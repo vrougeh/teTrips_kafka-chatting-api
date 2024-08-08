@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: default
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: chatdb
+      authentication-database: admin
+      username: chatuser
+      password: chatpassword
+
+  kafka:
+    consumer:
+      bootstrap-servers: kafka:9092
+      group-id: chat-group
+      properties:
+        spring.json.value.default.type: com.example.chat.model.ChatMessage
+    producer:
+      bootstrap-servers: kafka:9092
+server:
+  port: 8080
