@@ -21,9 +21,8 @@ public class ChatService {
   private final KafkaTemplate<String, ChatMessage> kafkaTemplate;
 
   public Mono<ChatMessage> saveMessage(ChatMessage message) {
-    message.setChatTime(LocalDateTime.now());
-    kafkaTemplate.send("chat-topic-" + message.getPrId() + "-" + message.getUserId(), message);
     message.setChatTime(LocalDateTime.now(ZoneId.of("Asia/Seoul")));
+    kafkaTemplate.send("chat-topic-" + message.getPrId() + "-" + message.getUserId(), message);
     return chatMessageRepository.save(message);
   }
 
