@@ -1,5 +1,206 @@
 version: '3.8'
+
 services:
+  # Zookeeper Instances
+  zookeeper-1:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: "server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181"
+    volumes:
+      - zookeeper_data_1:/data
+      - zookeeper_logs_1:/datalog
+
+  zookeeper-2:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2182:2181"
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: "server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181"
+    volumes:
+      - zookeeper_data_2:/data
+      - zookeeper_logs_2:/datalog
+
+  zookeeper-3:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2183:2181"
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: "server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181"
+    volumes:
+      - zookeeper_data_3:/data
+      - zookeeper_logs_3:/datalog
+
+  # Kafka Brokers
+  kafka-1:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-1
+    ports:
+      - "19092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-1:19092,EXTERNAL://kafka-1:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:19092,EXTERNAL://:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-2:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-2
+    ports:
+      - "29092:9093"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-2:29092,EXTERNAL://kafka-2:9093
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:29092,EXTERNAL://:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-3:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-3
+    ports:
+      - "39092:9094"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-3:39092,EXTERNAL://kafka-3:9094
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:39092,EXTERNAL://:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-4:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-4
+    ports:
+      - "49092:9095"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-4:49092,EXTERNAL://kafka-4:9095
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:49092,EXTERNAL://:9095
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-5:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-5
+    ports:
+      - "59092:9096"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-5:59092,EXTERNAL://kafka-5:9096
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:59092,EXTERNAL://:9096
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-6:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-6
+    ports:
+      - "19093:9097"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-6:19093,EXTERNAL://kafka-6:9097
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:19093,EXTERNAL://:9097
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-7:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-7
+    ports:
+      - "29093:9098"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-7:29093,EXTERNAL://kafka-7:9098
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:29093,EXTERNAL://:9098
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-8:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-8
+    ports:
+      - "39093:9099"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-8:39093,EXTERNAL://kafka-8:9099
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:39093,EXTERNAL://:9099
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  kafka-9:
+    image: wurstmeister/kafka:latest
+    hostname: kafka-9
+    ports:
+      - "49093:9100"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-9:49093,EXTERNAL://kafka-9:9100
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_LISTENERS: INTERNAL://:49093,EXTERNAL://:9100
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+
+  chat-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://chatuser:chatpassword@mongo:27017/chatdb
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+      - kafka-1
+      - kafka-2
+      - kafka-3
+      - kafka-4
+      - kafka-5
+      - kafka-6
+      - kafka-7
+      - kafka-8
+      - kafka-9
+
   mongo:
     image: mongo:latest
     ports:
@@ -12,34 +213,18 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: admin
 
-  kafka:
-    image: wurstmeister/kafka:latest
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-    depends_on:
-      - zookeeper
-
-  zookeeper:
-    image: wurstmeister/zookeeper:latest
-    ports:
-      - "2181:2181"
-
-  chat-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://chatuser:chatpassword@mongo:27017/chatdb
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mongo
-      - kafka
-
 volumes:
   mongo_data:
+    driver: local
+  zookeeper_data_1:
+    driver: local
+  zookeeper_data_2:
+    driver: local
+  zookeeper_data_3:
+    driver: local
+  zookeeper_logs_1:
+    driver: local
+  zookeeper_logs_2:
+    driver: local
+  zookeeper_logs_3:
     driver: local
