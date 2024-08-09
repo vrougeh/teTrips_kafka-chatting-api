@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 @Service
@@ -22,6 +23,7 @@ public class ChatService {
   public Mono<ChatMessage> saveMessage(ChatMessage message) {
     message.setChatTime(LocalDateTime.now());
     kafkaTemplate.send("chat-topic-" + message.getPrId() + "-" + message.getUserId(), message);
+    message.setChatTime(LocalDateTime.now(ZoneId.of("Asia/Seoul")));
     return chatMessageRepository.save(message);
   }
 
