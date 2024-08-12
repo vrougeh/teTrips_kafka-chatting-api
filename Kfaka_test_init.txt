@@ -1,0 +1,15 @@
+#producer
+kafka-producer-perf-test.sh \
+--topic bmt \
+--throughput -1 \
+--num-records 10000000 \
+--record-size 2000 \
+--producer-props acks=1 bootstrap.servers=kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100
+
+
+
+#consumer
+kafka-consumer-perf-test.sh \
+--topic bmt \
+--broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100 \
+--messages 10000000 \

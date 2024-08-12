@@ -12,6 +12,9 @@ services:
     volumes:
       - zookeeper_data_1:/data
       - zookeeper_logs_1:/datalog
+    networks:
+      - kafka-network
+
 
   zookeeper-2:
     image: wurstmeister/zookeeper:latest
@@ -23,6 +26,9 @@ services:
     volumes:
       - zookeeper_data_2:/data
       - zookeeper_logs_2:/datalog
+    networks:
+      - kafka-network
+
 
   zookeeper-3:
     image: wurstmeister/zookeeper:latest
@@ -34,6 +40,9 @@ services:
     volumes:
       - zookeeper_data_3:/data
       - zookeeper_logs_3:/datalog
+    networks:
+      - kafka-network
+
 
   # Kafka Brokers
   kafka-1:
@@ -51,6 +60,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-2:
     image: wurstmeister/kafka:latest
@@ -67,6 +79,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-3:
     image: wurstmeister/kafka:latest
@@ -83,6 +98,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-4:
     image: wurstmeister/kafka:latest
@@ -99,6 +117,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-5:
     image: wurstmeister/kafka:latest
@@ -115,6 +136,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-6:
     image: wurstmeister/kafka:latest
@@ -131,6 +155,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-7:
     image: wurstmeister/kafka:latest
@@ -147,6 +174,9 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
 
   kafka-8:
     image: wurstmeister/kafka:latest
@@ -163,6 +193,8 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
 
   kafka-9:
     image: wurstmeister/kafka:latest
@@ -179,6 +211,34 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    networks:
+      - kafka-network
+
+  cmak:
+    image: hlebalbau/kafka-manager:stable
+    restart: always
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
+      - kafka-4
+      - kafka-5
+      - kafka-6
+      - kafka-7
+      - kafka-8
+      - kafka-9
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+    ports:
+      - 9000:9000
+    environment:
+      ZK_HOSTS: zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183
+      KAFKA_MANAGER_AUTH_ENABLED: "true"
+      KAFKA_MANAGER_USERNAME: admin
+      KAFKA_MANAGER_PASSWORD: password
+    networks:
+      - kafka-network
 
   chat-service:
     build:
@@ -200,6 +260,8 @@ services:
       - kafka-7
       - kafka-8
       - kafka-9
+    networks:
+      - kafka-network
 
   mongo:
     image: mongo:latest
@@ -212,6 +274,12 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: admin
+    networks:
+      - kafka-network
+
+networks:
+  kafka-network:
+    driver: bridge
 
 volumes:
   mongo_data:
