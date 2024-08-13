@@ -1,7 +1,9 @@
 
 # docker exec -it my-zookeeper /bin/bash
-root@ec5ea8a1e52b:/opt/zookeeper-3.4.13# ./bin/zkCli.sh
+ ./bin/zkCli.sh
+
 ...
+
 [zk: localhost:2181(CONNECTED) 0] ls /kafka-manager
 [configs, clusters, deleteClusters]
 [zk: localhost:2181(CONNECTED) 1] create /kafka-manager/mutex ""
@@ -10,3 +12,5 @@ Created /kafka-manager/mutex
 Created /kafka-manager/mutex/locks
 [zk: localhost:2181(CONNECTED) 3] create /kafka-manager/mutex/leases ""
 Created /kafka-manager/mutex/leases
+
+zookeeper-1:2181,zookeeper-2:2182,zookeeper-3:2183

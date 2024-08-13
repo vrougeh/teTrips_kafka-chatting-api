@@ -3,7 +3,6 @@ package com.tetrips.chatv2.Service;
 import com.tetrips.chatv2.model.ChatMessage;
 import com.tetrips.chatv2.repository.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -11,7 +10,6 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +17,21 @@ public class ChatService {
   private final ChatMessageRepository chatMessageRepository;
 
   private final KafkaTemplate<String, ChatMessage> kafkaTemplate;
+  private final KafkaTopicService kafkaTopicService;
 
   public Mono<ChatMessage> saveMessage(ChatMessage message) {
     message.setChatTime(LocalDateTime.now(ZoneId.of("Asia/Seoul")));
-    kafkaTemplate.send("chat-topic-" + message.getPrId() + "-" + message.getUserId(), message);
+
+    // 동적 토픽 이름 생성
+    String topicName = "chat-topic-" + message.getPrId();
+
+    // 토픽이 존재하지 않을 경우, 생성
+    kafkaTopicService.createTopicIfNotExists(topicName, 90, (short) 3);
+
+//    kafkaTemplate.send("chat-topic-" + message.getPrId() + "-" + message.getUserId(), message); //set dynamic topic name
+    kafkaTemplate.send("chat-topic-" + message.getPrId(), message);  //set dynamic topic name
+//    kafkaTemplate.send("processed-chat-topic", message); //set static topic name
+
     return chatMessageRepository.save(message);
   }
 
