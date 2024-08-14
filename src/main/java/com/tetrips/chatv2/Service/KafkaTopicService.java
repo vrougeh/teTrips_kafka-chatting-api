@@ -1,8 +1,8 @@
 package com.tetrips.chatv2.Service;
 
+import lombok.AllArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.stereotype.Service;
@@ -12,13 +12,11 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
+@AllArgsConstructor
 public class KafkaTopicService {
 
   private final KafkaAdmin kafkaAdmin;
 
-  public KafkaTopicService(KafkaAdmin kafkaAdmin) {
-    this.kafkaAdmin = kafkaAdmin;
-  }
 
   public void createTopicIfNotExists(String topicName, int numPartitions, short replicationFactor) {
     Map<String, Object> configs = kafkaAdmin.getConfigurationProperties();

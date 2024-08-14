@@ -18,11 +18,6 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
-  @Value("${spring.kafka.consumer.bootstrap-servers}")
-  private String consumerBootstrapServers;
-
-  @Value("${spring.kafka.consumer.group-id}")
-  private String groupId;
 
   @Bean
   public ConsumerFactory<String, ChatMessage> chatMessageConsumerFactory() {
