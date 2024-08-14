@@ -9,12 +9,15 @@ spring:
       password: chatpassword
 
   kafka:
+    bootstrap-servers: kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100
+    producer:
+      retries: 3 # 전송 실패 시 재시도 횟수
+      acks: all # 모든 복제본이 데이터를 수신할 때까지 기다림
     consumer:
-      bootstrap-servers: kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100
       group-id: chat-group
       properties:
         spring.json.value.default.type: com.example.chat.model.ChatMessage
-    producer:
-      bootstrap-servers: kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100
+      auto-offset-reset: earliest # 가장 이른 메시지부터 소비
+      enable-auto-commit: true # 자동 커밋 설정
 server:
   port: 8081
