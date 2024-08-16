@@ -36,10 +36,10 @@ out/
 ### VS Code ###
 .vscode/
 
-*.yml
+local-docker-compose.yml
+local-application.yml
 *.yaml
-!**/docker-compose/
+!**/docker-compose/*.yml
 !**/kubernetes/
 *.txt
 !**/restore-file/
-Dockerfile
