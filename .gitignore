@@ -42,3 +42,4 @@ out/
 !**/kubernetes/
 *.txt
 !**/restore-file/
+Dockerfile

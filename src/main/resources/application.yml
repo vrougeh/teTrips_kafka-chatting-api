@@ -1,12 +1,10 @@
 spring:
-  data:
-    mongodb:
-      host: mongo
-      port: 27017
-      database: chatdb
-      authentication-database: admin
-      username: chatuser
-      password: chatpassword
+  application:
+    name: CHAT
+  profiles:
+    active: service
+  config:
+    import: optional:configserver:http://223.130.150.136:8888
 
   kafka:
     bootstrap-servers: kafka-1:9092,kafka-2:9093,kafka-3:9094,kafka-4:9095,kafka-5:9096,kafka-6:9097,kafka-7:9098,kafka-8:9099,kafka-9:9100
