@@ -25,4 +25,4 @@ spec:
             - name: SPRING_DATA_MONGODB_URI
               value: mongodb://chatuser:chatpassword@mongo-service/chatdb
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
-              value: kafka-0.kafka.kafka-namespace.svc.cluster.local:9092,kafka-1.kafka.kafka-namespace.svc.cluster.local:9093,kafka-2.kafka.kafka-namespace.svc.cluster.local:9094,kafka-3.kafka.kafka-namespace.svc.cluster.local:9095,kafka-4.kafka.kafka-namespace.svc.cluster.local:9096,kafka-5.kafka.kafka-namespace.svc.cluster.local:9097,kafka-6.kafka.kafka-namespace.svc.cluster.local:9098,kafka-7.kafka.kafka-namespace.svc.cluster.local:9099,kafka-8.kafka.kafka-namespace.svc.cluster.local:9100
+              value: kafka-0.kafka.kafka-namespace.svc.cluster.local:9092,kafka-1.kafka.kafka-namespace.svc.cluster.local:9092,kafka-2.kafka.kafka-namespace.svc.cluster.local:9092
