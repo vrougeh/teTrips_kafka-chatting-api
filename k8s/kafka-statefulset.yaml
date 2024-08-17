@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kafka
+  name: kafka-cluster
 spec:
   serviceName: "kafka"
   replicas: 3
   selector:
     matchLabels:
-      app: kafka
+      app: kafka-cluster
   template:
     metadata:
       labels:
-        app: kafka
+        app: kafka-cluster
     spec:
       nodeSelector:
         kubernetes.io/hostname: tetrips-kafzoo-np-w-5i5v
       containers:
-        - name: kafka
+        - name: kafka-cluster
           image: wurstmeister/kafka:latest
           ports:
             - containerPort: 9092  # Kafka client port
