@@ -6,11 +6,10 @@ data:
   server.properties: |
     broker.id=${HOSTNAME##*-}
     listeners=PLAINTEXT://0.0.0.0:9092,INSIDE://0.0.0.0:9093
-    advertised.listeners=PLAINTEXT://0.0.0.0:9092,INSIDE://0.0.0.0:9093
+    advertised.listeners=PLAINTEXT://kafka-cluster.default.svc.cluster.local:9092,INSIDE://kafka-cluster.default.svc.cluster.local:9093
     inter.broker.listener.name=INSIDE
     listener.security.protocol.map=PLAINTEXT:PLAINTEXT,INSIDE:PLAINTEXT
-    log.dirs=/var/lib/kafka
-    zookeeper.connect=0.0.0.0:2181
+    zookeeper.connect=zookeeper-0:2181,zookeeper-1:2181,zookeeper-2:2181
     num.partitions=180
     default.replication.factor=3
     offsets.topic.replication.factor=3
