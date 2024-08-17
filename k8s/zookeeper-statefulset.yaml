@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zookeeper
+spec:
+  serviceName: "zookeeper-headless"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: tetrips-kafzoo-np-w-5i5v
+      containers:
+        - name: zookeeper
+          image: wurstmeister/zookeeper:latest
+          ports:
+            - containerPort: 2181
+            - containerPort: 2888
+            - containerPort: 3888
+          volumeMounts:
+            - name: zookeeper-data
+              mountPath: /var/lib/zookeeper
+            - name: zookeeper-config
+              mountPath: /etc/zookeeper/conf
+              subPath: zoo.cfg
+          env:
+            - name: ZOO_MY_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ZOO_SERVERS
+              value: server.1=zookeeper-0.zookeeper-headless.kafka-namespace.svc.cluster.local:2888:3888,server.2=zookeeper-1.zookeeper-headless.kafka-namespace.svc.cluster.local:2888:3888,server.3=zookeeper-2.zookeeper-headless.kafka-namespace.svc.cluster.local:2888:3888
+      volumes:
+        - name: zookeeper-data
+          emptyDir: {}
+        - name: zookeeper-config
+          configMap:
+            name: zookeeper-config

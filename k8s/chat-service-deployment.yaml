@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-service
+  labels:
+    app: chat-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-service
+  template:
+    metadata:
+      labels:
+        app: chat-service
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: tetrips-msa-np-w-5i0a # 다른 노드 이름으로 변경 필요
+      containers:
+        - name: chat-service
+          image: chat-service-image:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://chatuser:chatpassword@mongo-service/chatdb
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: kafka-0.kafka-headless.kafka-namespace.svc.cluster.local:9092,kafka-1.kafka-headless.kafka-namespace.svc.cluster.local:9093,kafka-2.kafka-headless.kafka-namespace.svc.cluster.local:9094,kafka-3.kafka-headless.kafka-namespace.svc.cluster.local:9095,kafka-4.kafka-headless.kafka-namespace.svc.cluster.local:9096,kafka-5.kafka-headless.kafka-namespace.svc.cluster.local:9097,kafka-6.kafka-headless.kafka-namespace.svc.cluster.local:9098,kafka-7.kafka-headless.kafka-namespace.svc.cluster.local:9099,kafka-8.kafka-headless.kafka-namespace.svc.cluster.local:9100

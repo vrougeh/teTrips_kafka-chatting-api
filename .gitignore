@@ -36,10 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-local-docker-compose.yml
+
 local-application.yml
-*.yaml
-!**/docker-compose/*.yml
+!**/docker-compose/
 !**/kubernetes/
 *.txt
-!**/restore-file/
+src/main/resources/local-application.yml
