@@ -34,7 +34,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: ZOO_SERVERS
-              value:     server.1=zookeeper-0:2888:3888, server.2=zookeeper-1:2888:3888,server.3=zookeeper-2:2888:3888
+              value: server.1=zookeeper-0:2888:3888, server.2=zookeeper-1:2888:3888,server.3=zookeeper-2:2888:3888
       volumes:
         - name: zookeeper-data
           emptyDir: {}

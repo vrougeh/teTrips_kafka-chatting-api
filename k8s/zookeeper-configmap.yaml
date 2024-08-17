@@ -9,8 +9,6 @@ data:
     syncLimit=5
     dataDir=/var/lib/zookeeper
     clientPort=2181
-    autopurge.snapRetainCount=3
-    autopurge.purgeInterval=1
-    server.1=zookeeper-0:2888:3888
-    server.2=zookeeper-1:2888:3888
-    server.3=zookeeper-2:2888:3888
+    server.1=zookeeper-0.zookeeper.default.svc.cluster.local:2888:3888
+    server.2=zookeeper-1.zookeeper.default.svc.cluster.local:2888:3888
+    server.3=zookeeper-2.zookeeper.default.svc.cluster.local:2888:3888
