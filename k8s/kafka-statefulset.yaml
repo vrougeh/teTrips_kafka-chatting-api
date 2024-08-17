@@ -4,7 +4,7 @@ metadata:
   name: kafka
 spec:
   serviceName: "kafka"
-  replicas: 9
+  replicas: 3
   selector:
     matchLabels:
       app: kafka
