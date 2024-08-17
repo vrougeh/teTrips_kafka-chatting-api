@@ -7,4 +7,4 @@ services:
       dockerfile: Dockerfile
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://chatuser:chatpassword@mongo:27017/chatdb
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-0:9092,kafka-1:9092,kafka-2:9092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka-cluster-0:9092,kafka-cluster-1:9092,kafka-cluster-2:9092
