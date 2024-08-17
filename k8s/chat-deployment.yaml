@@ -18,7 +18,7 @@ spec:
         kubernetes.io/hostname: tetrips-msa-np-w-5i0a # 다른 노드 이름으로 변경 필요
       containers:
         - name: chat-service
-          image: chat-service-image:latest
+          image: honggyun/tetrips-chat-service:latest
           ports:
             - containerPort: 8081
           env:
