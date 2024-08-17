@@ -6,7 +6,7 @@ data:
   server.properties: |
     broker.id=${HOSTNAME##*-}
     listeners=PLAINTEXT://0.0.0.0:9092,INSIDE://0.0.0.0:9093
-    advertised.listeners=PLAINTEXT://0.0.0.0:9092,INSIDE://kafka-$(POD_NAME).kafka.default.svc.cluster.local:9093
+    advertised.listeners=PLAINTEXT://0.0.0.0:9092,INSIDE://0.0.0.0:9093
     inter.broker.listener.name=INSIDE
     listener.security.protocol.map=PLAINTEXT:PLAINTEXT,INSIDE:PLAINTEXT
     log.dirs=/var/lib/kafka
