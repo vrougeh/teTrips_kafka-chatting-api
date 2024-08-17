@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: kafka-cluster
 spec:
-  serviceName: "kafka"
+  serviceName: "kafka-cluster"
   replicas: 3
   selector:
     matchLabels:
@@ -24,9 +24,6 @@ spec:
           volumeMounts:
             - name: kafka-data
               mountPath: /var/lib/kafka
-            - name: kafka-config
-              mountPath: /etc/kafka/server.properties
-              subPath: server.properties
           env:
             - name: KAFKA_ADVERTISED_LISTENERS
               value: PLAINTEXT://kafka-$(POD_NAME).kafka.default.svc.cluster.local:9092
