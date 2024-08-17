@@ -5,7 +5,7 @@ metadata:
 data:
   server.properties: |
     broker.id=${HOSTNAME##*-}
-    listeners=PLAINTEXT://:9092
+    listeners=PLAINTEXT://0.0.0.0:9092
     log.dirs=/var/lib/kafka
     zookeeper.connect=zookeeper-0.zookeeper.kafka-namespace.svc.cluster.local:2181,zookeeper-1.zookeeper.kafka-namespace.svc.cluster.local:2181,zookeeper-2.zookeeper.kafka-namespace.svc.cluster.local:2181
     num.partitions=180
