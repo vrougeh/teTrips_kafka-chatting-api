@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: kafka
 spec:
-  clusterIP: None
   ports:
     - name: client
       port: 9092
       targetPort: 9092
+    - name: jmx
+      port: 1099
+      targetPort: 1099
   selector:
     app: kafka

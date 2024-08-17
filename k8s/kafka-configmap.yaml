@@ -7,7 +7,7 @@ data:
     broker.id=${HOSTNAME##*-}
     listeners=PLAINTEXT://:9092
     log.dirs=/var/lib/kafka
-    zookeeper.connect=zookeeper-0.zookeeper-headless.kafka-namespace.svc.cluster.local:2181,zookeeper-1.zookeeper-headless.kafka-namespace.svc.cluster.local:2181,zookeeper-2.zookeeper-headless.kafka-namespace.svc.cluster.local:2181
+    zookeeper.connect=zookeeper-0.zookeeper.kafka-namespace.svc.cluster.local:2181,zookeeper-1.zookeeper.kafka-namespace.svc.cluster.local:2181,zookeeper-2.zookeeper.kafka-namespace.svc.cluster.local:2181
     num.partitions=180
     default.replication.factor=3
     offsets.topic.replication.factor=3

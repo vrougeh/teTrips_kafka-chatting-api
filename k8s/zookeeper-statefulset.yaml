@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: zookeeper
 spec:
-  serviceName: "zookeeper-headless"
+  serviceName: "zookeeper"
   replicas: 3
   selector:
     matchLabels:
@@ -32,9 +32,9 @@ spec:
             - name: ZOO_MY_ID
               valueFrom:
                 fieldRef:
-                  fieldPath: metadata.name
+                  fieldPath: statefulset.kubernetes.io/pod-name
             - name: ZOO_SERVERS
-              value: server.1=zookeeper-0.zookeeper-headless.kafka-namespace.svc.cluster.local:2888:3888,server.2=zookeeper-1.zookeeper-headless.kafka-namespace.svc.cluster.local:2888:3888,server.3=zookeeper-2.zookeeper-headless.kafka-namespace.svc.cluster.local:2888:3888
+              value: server.1=zookeeper-0.zookeeper.kafka-namespace.svc.cluster.local:2888:3888,server.2=zookeeper-1.zookeeper.kafka-namespace.svc.cluster.local:2888:3888,server.3=zookeeper-2.zookeeper.kafka-namespace.svc.cluster.local:2888:3888
       volumes:
         - name: zookeeper-data
           emptyDir: {}

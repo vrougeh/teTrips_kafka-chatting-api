@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: kafka
 spec:
-  serviceName: "kafka-headless"
+  serviceName: "kafka"
   replicas: 9
   selector:
     matchLabels:
@@ -19,7 +19,8 @@ spec:
         - name: kafka
           image: wurstmeister/kafka:latest
           ports:
-            - containerPort: 9092
+            - containerPort: 9092  # Kafka client port
+            - containerPort: 1099  # JMX Port
           volumeMounts:
             - name: kafka-data
               mountPath: /var/lib/kafka
@@ -27,13 +28,24 @@ spec:
               mountPath: /etc/kafka/server.properties
               subPath: server.properties
           env:
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: INSIDE://kafka-$(POD_NAME).kafka.default.svc.cluster.local:9092,OUTSIDE://kafka-$(POD_NAME).kafka.default.svc.cluster.local:9092
+            - name: KAFKA_LISTENERS
+              value: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9092
+            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+              value: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+            - name: KAFKA_INTER_BROKER_LISTENER_NAME
+              value: INSIDE
             - name: KAFKA_ZOOKEEPER_CONNECT
-              valueFrom:
-                configMapKeyRef:
-                  name: kafka-config
-                  key: zookeeper.connect
-            - name: KAFKA_LISTENER_NAME
-              value: PLAINTEXT://:9092
+              value: zookeeper-0:2181,zookeeper-1:2181,zookeeper-2:2181
+            - name: KAFKA_AUTO_LEADER_REBALANCE_ENABLE
+              value: "true"
+            - name: KAFKA_LEADER_IMBALANCE_PER_BROKER_PER_PARTITION
+              value: "0.1"
+            - name: KAFKA_JMX_PORT
+              value: "1099"
+            - name: KAFKA_JMX_OPTS
+              value: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
       volumes:
         - name: kafka-data
           emptyDir: {}
