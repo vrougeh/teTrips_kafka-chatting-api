@@ -7,7 +7,8 @@ spec:
     - name: client
       port: 9092
       targetPort: 9092
-    - port: 9093
+    - name: inside
+      port: 9093
       targetPort: 9093
     - name: jmx
       port: 1099
