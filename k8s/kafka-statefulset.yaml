@@ -13,6 +13,8 @@ spec:
       labels:
         app: kafka-cluster
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: tetrips-kafzoo-np-w-5i5v
       containers:
         - name: kafka-cluster
           image: wurstmeister/kafka:latest
