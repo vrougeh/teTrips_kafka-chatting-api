@@ -8,7 +8,7 @@ spring:
 
   data:
     mongodb:
-      host: mongo-statefulset-0
+      host: mongo
       port: 27017
       database: chatdb
       authentication-database: admin
