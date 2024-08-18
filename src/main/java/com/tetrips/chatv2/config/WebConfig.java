@@ -13,6 +13,7 @@ public class WebConfig {
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins("http://www.tetrips.co.kr")
+                .allowedOrigins("https://www.tetrips.co.kr")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
