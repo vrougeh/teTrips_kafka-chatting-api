@@ -4,7 +4,7 @@ metadata:
   name: kafka-cluster
 spec:
   serviceName: "kafka-cluster"
-  replicas: 3
+  replicas: 9
   selector:
     matchLabels:
       app: kafka-cluster

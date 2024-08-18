@@ -7,7 +7,7 @@ spring:
     import: optional:configserver:http://223.130.150.136:8888
 
   kafka:
-    bootstrap-servers: 0.0.0.0:9092
+    bootstrap-servers: kafka-cluster:9092
     producer:
       retries: 3 # 전송 실패 시 재시도 횟수
       acks: all # 모든 복제본이 데이터를 수신할 때까지 기다림
