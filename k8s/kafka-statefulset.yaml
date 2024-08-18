@@ -46,6 +46,10 @@ spec:
             value: "1099"
           - name: KAFKA_JMX_OPTS
             value: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
       volumes:
         - name: kafka-data
           emptyDir: {}

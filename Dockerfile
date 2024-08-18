@@ -4,9 +4,9 @@ WORKDIR /gradle
 RUN ./gradlew build --no-daemon
 
 
-FROM openjdk:17-alpine
-RUN mkdir /app
-COPY --from=builder /gradle/build/libs/*.jar /app/app.jar
-ARG PROFILE
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+#FROM openjdk:17-alpine
+#RUN mkdir /app
+#COPY --from=builder /gradle/build/libs/*.jar /app/app.jar
+#ARG PROFILE
+#EXPOSE 8080
+#ENTRYPOINT ["java", "-jar", "/app/app.jar"]
