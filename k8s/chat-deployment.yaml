@@ -25,4 +25,5 @@ spec:
             - name: SPRING_DATA_MONGODB_URI
               value: mongodb://chatuser:chatpassword@mongo-service/chatdb
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
-              value: PLAINTEXT://kafka-cluster-${HOSTNAME##*-}.kafka-cluster.default.svc.cluster.local:9092,INSIDE://kafka-cluster-${HOSTNAME##*-}.kafka-cluster.default.svc.cluster.local:9093
+              value: PLAINTEXT://kafka-cluster-0.kafka-cluster.default.svc.cluster.local:9092, PLAINTEXT://kafka-cluster-1.kafka-cluster.default.svc.cluster.local:9092,PLAINTEXT://kafka-cluster-2.kafka-cluster.default.svc.cluster.local:9092,  INSIDE://kafka-cluster-0.kafka-cluster.default.svc.cluster.local:9093,  INSIDE://kafka-cluster-1.kafka-cluster.default.svc.cluster.local:9093,  INSIDE://kafka-cluster-2.kafka-cluster.default.svc.cluster.local:9093
+              value: PLAINTEXT://kafka-cluster-0.kafka-cluster.default.svc.cluster.local:9092, PLAINTEXT://kafka-cluster-1.kafka-cluster.default.svc.cluster.local:9092,PLAINTEXT://kafka-cluster-2.kafka-cluster.default.svc.cluster.local:9092,  INSIDE://kafka-cluster-0.kafka-cluster.default.svc.cluster.local:9093,  INSIDE://kafka-cluster-1.kafka-cluster.default.svc.cluster.local:9093,  INSIDE://kafka-cluster-2.kafka-cluster.default.svc.cluster.local:9093
