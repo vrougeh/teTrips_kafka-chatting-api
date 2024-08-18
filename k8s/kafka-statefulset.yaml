@@ -30,9 +30,9 @@ spec:
               readOnly: true
           env:
             - name: KAFKA_ADVERTISED_LISTENERS
-              value: PLAINTEXT://:9092,INSIDE://:9093
+              value: PLAINTEXT://:9092,INSIDE://:9092
             - name: KAFKA_LISTENERS
-              value: PLAINTEXT://:9092,INSIDE://:9093
+              value: PLAINTEXT://:9092,INSIDE://:9092
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
               value: PLAINTEXT:PLAINTEXT,INSIDE:PLAINTEXT
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
