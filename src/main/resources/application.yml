@@ -19,3 +19,7 @@ spring:
       enable-auto-commit: true # 자동 커밋 설정
 server:
   port: 8081
+  ssl:
+    key-store: classpath:tetripscert.p12
+    key-store-password: xpxmflqtm
+    key-store-type: PKCS12
