@@ -28,9 +28,9 @@ spec:
               readOnly: true
           env:
             - name: KAFKA_ADVERTISED_LISTENERS
-              value: PLAINTEXT://kafka-cluster-0.kafka-cluster.default.svc.cluster.local:9092,PLAINTEXT://kafka-cluster-1.kafka-cluster.default.svc.cluster.local:9092,PLAINTEXT://kafka-cluster-2.kafka-cluster.default.svc.cluster.local:9092,INSIDE://kafka-cluster-0.kafka-cluster.default.svc.cluster.local:9093,INSIDE://kafka-cluster-1.kafka-cluster.default.svc.cluster.local:9093,INSIDE://kafka-cluster-2.kafka-cluster.default.svc.cluster.local:9093
+              value: PLAINTEXT://:9092,INSIDE://:9093
             - name: KAFKA_LISTENERS
-              value: PLAINTEXT://0.0.0.0:9092,INSIDE://0.0.0.0:9093
+              value: PLAINTEXT://:9092,INSIDE://:9093
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
               value: PLAINTEXT:PLAINTEXT,INSIDE:PLAINTEXT
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
