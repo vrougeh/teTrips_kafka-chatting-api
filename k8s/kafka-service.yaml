@@ -15,4 +15,3 @@ spec:
       targetPort: 1099
   selector:
     app: kafka-cluster
-  clusterIP: None  # Headless service
