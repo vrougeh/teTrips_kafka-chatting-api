@@ -23,6 +23,6 @@ spec:
             - containerPort: 8081
           env:
             - name: SPRING_DATA_MONGODB_URI
-              value: mongodb://root:xpxmflqtm@mongo/chatdb?authSource=admin
+              value: mongodb://root:xpxmflqtm@mongo-service/chatdb
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
               value: PLAINTEXT://kafka-cluster-0.kafka-cluster:9092,kafka-cluster-1.kafka-cluster:9092,kafka-cluster-2.kafka-cluster:9092
