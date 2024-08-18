@@ -4,12 +4,7 @@ metadata:
   name: kafka-config
 data:
   server.properties: |
-    broker.id=${HOSTNAME##*-}
-    listeners=PLAINTEXT://0.0.0.0:9092,INSIDE://0.0.0.0:9093
-    advertised.listeners=PLAINTEXT://kafka-cluster-${POD_NAME}.kafka-cluster.default.svc.cluster.local:9092,INSIDE://kafka-cluster-${POD_NAME}.kafka-cluster.default.svc.cluster.local:9093
-    inter.broker.listener.name=INSIDE
-    listener.security.protocol.map=PLAINTEXT:PLAINTEXT,INSIDE:PLAINTEXT
-    zookeeper.connect=zookeeper:2181
+    broker.id=${POD_NAME}
     num.partitions=180
     default.replication.factor=9
     offsets.topic.replication.factor=3
