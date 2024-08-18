@@ -26,7 +26,7 @@ public class ChatService {
     String topicName = "chat-topic-" + message.getPrId();
 
     // 토픽이 존재하지 않을 경우, 생성
-    kafkaTopicService.createTopicIfNotExists(topicName, 90, (short) 3);
+    kafkaTopicService.createTopicIfNotExists(topicName, 180, (short) 3);
 
 //    kafkaTemplate.send(topicName + "-" + message.getUserId(), message); //set dynamic topic name
     kafkaTemplate.send(topicName, message);  //set dynamic topic name
