@@ -6,6 +6,15 @@ spring:
   config:
     import: optional:configserver:http://223.130.150.136:8888
 
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: chatdb
+      authentication-database: admin
+      username: root
+      password: xpxmflqtm
+
   kafka:
     bootstrap-servers:  kafka-cluster-0.kafka-cluster:9092,kafka-cluster-1.kafka-cluster:9092, kafka-cluster-2.kafka-cluster:9092,kafka-cluster-3.kafka-cluster:9092, kafka-cluster-4.kafka-cluster:9092,kafka-cluster-5.kafka-cluster:9092, kafka-cluster-6.kafka-cluster:9092,kafka-cluster-7.kafka-cluster:9092, kafka-cluster-8.kafka-cluster:9092
     producer:
