@@ -16,7 +16,6 @@ public class ChatWebSocketHandler {
   @KafkaListener(topics = "processed-chat-topic", groupId = "chat-group")
   public void listen(ChatMessage message) {
 
-    kafkaTopicService.createTopicIfNotExists("processed-chat-topic", 180, (short) 3);
     messagingTemplate.convertAndSend("/topic/messages/" + message.getPrId(), message);
   }
 }
