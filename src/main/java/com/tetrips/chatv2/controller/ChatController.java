@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "https://www.tetrips.co.kr")
 @RequiredArgsConstructor
 public class ChatController {
   private final ChatService chatService;
