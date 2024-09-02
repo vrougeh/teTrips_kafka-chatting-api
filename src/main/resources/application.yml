@@ -16,7 +16,7 @@ spring:
       password: xpxmflqtm
 
   kafka:
-    bootstrap-servers:  kafka-cluster-0.kafka-cluster:9092,kafka-cluster-1.kafka-cluster:9092, kafka-cluster-2.kafka-cluster:9092,kafka-cluster-3.kafka-cluster:9092, kafka-cluster-4.kafka-cluster:9092,kafka-cluster-5.kafka-cluster:9092, kafka-cluster-6.kafka-cluster:9092,kafka-cluster-7.kafka-cluster:9092, kafka-cluster-8.kafka-cluster:9092
+    bootstrap-servers:  kafka-cluster-0.kafka-cluster:9092
     producer:
       retries: 3 # 전송 실패 시 재시도 횟수
       acks: all # 모든 복제본이 데이터를 수신할 때까지 기다림

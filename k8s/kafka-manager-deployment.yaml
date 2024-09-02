@@ -13,7 +13,7 @@ spec:
         app: kafka-manager
     spec:
       nodeSelector:
-        kubernetes.io/hostname: tetrips-kafzoo-np-w-5i5v
+        kubernetes.io/hostname: tetrips-kafzoo-np-w-5lim
       containers:
         - name: kafka-manager
           image: hlebalbau/kafka-manager:latest

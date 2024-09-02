@@ -4,7 +4,7 @@ metadata:
   name: kafka-cluster
 spec:
   serviceName: "kafka-cluster"
-  replicas: 9
+  replicas: 1
   selector:
     matchLabels:
       app: kafka-cluster
@@ -14,7 +14,7 @@ spec:
         app: kafka-cluster
     spec:
       nodeSelector:
-        kubernetes.io/hostname: tetrips-kafzoo-np-w-5i5v
+        kubernetes.io/hostname: tetrips-kafzoo-np-w-5lim
       containers:
         - name: kafka-cluster
           image: wurstmeister/kafka:latest

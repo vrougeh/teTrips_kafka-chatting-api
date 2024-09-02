@@ -4,7 +4,7 @@ metadata:
   name: zookeeper
 spec:
   serviceName: "zookeeper"
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: zookeeper
@@ -14,7 +14,7 @@ spec:
         app: zookeeper
     spec:
       nodeSelector:
-        kubernetes.io/hostname: tetrips-kafzoo-np-w-5i5v
+        kubernetes.io/hostname: tetrips-kafzoo-np-w-5lim
       containers:
         - name: zookeeper
           image: wurstmeister/zookeeper:latest

@@ -11,9 +11,6 @@ data:
     listener.security.protocol.map=PLAINTEXT:PLAINTEXT,INSIDE:PLAINTEXT
     zookeeper.connect=zookeeper.default.svc.cluster.local:2181
     num.partitions=180
-    default.replication.factor=3
-    offsets.topic.replication.factor=3
-    transaction.state.log.replication.factor=3
     transaction.state.log.min.isr=2
     log.retention.hours=168
     log.segment.bytes=1073741824
