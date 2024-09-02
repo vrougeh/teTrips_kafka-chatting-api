@@ -12,8 +12,7 @@ public class WebConfig {
       @Override
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://www.tetrips.co.kr")
-                .allowedOrigins("https://www.tetrips.co.kr")
+                .allowedOrigins("http://www.tetrips.co.kr", "https://www.tetrips.co.kr")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
